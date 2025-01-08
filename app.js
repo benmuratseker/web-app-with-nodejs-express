@@ -11,7 +11,7 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/public/')));//this definition checks if we have an index page if we don't we see the message belove
 
 app.get('/', (req, res) => {
-    res.send('Hello from my node.js app');
+    res.send('Hello from my node.js app!');
 });
 
 app.listen(3000, () =>{
