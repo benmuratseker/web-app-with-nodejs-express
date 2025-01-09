@@ -18,7 +18,10 @@
     "nodemon": "^3.1.9"
   },
   "nodemonConfig":{
-    "restartable":"rs",
-    "delay":2500
+    "restartable": "rs",
+    "delay": 2500,
+    "env": {
+      "PORT": 4000
+    }
   }
 }
