@@ -16,6 +16,8 @@ app.use(express.static(path.join(__dirname, '/public/')));//this definition chec
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+app.use('/sessions', sessionRouter);
+
 app.get('/', (req, res) => {
     //res.send('Hello from my node.js app!');
     res.render('index', { title: " XdLab", data: ['bachata', 'salsa', 'kizomba'] });// to access this page we need to delete such static files index.html 
