@@ -13,11 +13,12 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "debug": "^4.4.0",
+    "ejs": "^3.1.10",
     "express": "4.21",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.9"
   },
-  "nodemonConfig":{
+  "nodemonConfig": {
     "restartable": "rs",
     "delay": 2500,
     "env": {
