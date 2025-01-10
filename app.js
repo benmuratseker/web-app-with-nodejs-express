@@ -7,6 +7,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;//get from package.json while hotreload continues to use 3000 after stop and start 4000 becomes active port
 
 const app = express();
+const sessionsRouter = express.Router();
 
 // app.use(morgan('combined'));
 app.use(morgan('tiny'));
@@ -16,7 +17,18 @@ app.use(express.static(path.join(__dirname, '/public/')));//this definition chec
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
-app.use('/sessions', sessionRouter);
+sessionsRouter.route('/')
+    .get((req, res) => {
+        res.send('hello sessions');
+    })
+
+sessionsRouter.route('/1')
+    .get((req, res) => {
+        res.send('hello single sessions');
+    })
+
+
+app.use('/sessions', sessionsRouter);
 
 app.get('/', (req, res) => {
     //res.send('Hello from my node.js app!');
