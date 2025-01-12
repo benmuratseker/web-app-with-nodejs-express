@@ -3,12 +3,13 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
-const sessions = require('./src/data/sessions.json'); 
+//const sessions = require('./src/data/sessions.json'); 
 
 const PORT = process.env.PORT || 3000;//get from package.json while hotreload continues to use 3000 after stop and start 4000 becomes active port
 
 const app = express();
-const sessionsRouter = express.Router();
+//const sessionsRouter = express.Router();
+const sessionsRouter = require('./src/routers/sessionRouter');
 
 // app.use(morgan('combined'));
 app.use(morgan('tiny'));
@@ -17,30 +18,6 @@ app.use(express.static(path.join(__dirname, '/public/')));//this definition chec
 //set ejs as a template engine
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
-
-sessionsRouter.route('/')
-    .get((req, res) => {
-        //res.send('hello sessions');
-        // res.render('sessions', {sessions: [
-        //     { title: 'Session 1', description: 'this is session 1'},
-        //     { title: 'Session 2', description: 'this is session 2'},
-        //     { title: 'Session 3', description: 'this is session 3'},
-        //     { title: 'Session 4', description: 'this is session 4'},
-        // ]});
-        res.render('sessions', { sessions });
-    })
-
-// sessionsRouter.route('/1')
-//     .get((req, res) => {
-//         res.send('hello single sessions');
-//     })
-
-sessionsRouter.route('/:id')
-    .get((req, res) => {
-        const id = req.params.id;
-        //res.send('hello single sessions ' + id);
-        res.render('session', { session: sessions[id] })
-    })
 
 
 app.use('/sessions', sessionsRouter);
