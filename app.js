@@ -30,9 +30,16 @@ sessionsRouter.route('/')
         res.render('sessions', { sessions });
     })
 
-sessionsRouter.route('/1')
+// sessionsRouter.route('/1')
+//     .get((req, res) => {
+//         res.send('hello single sessions');
+//     })
+
+sessionsRouter.route('/:id')
     .get((req, res) => {
-        res.send('hello single sessions');
+        const id = req.params.id;
+        //res.send('hello single sessions ' + id);
+        res.render('session', { session: sessions[id] })
     })
 
 
