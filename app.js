@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;//get from package.json while hotreload co
 const app = express();
 //const sessionsRouter = express.Router();
 const sessionsRouter = require('./src/routers/sessionRouter');
+const adminRouter = require('./src/routers/adminRouter');
 
 // app.use(morgan('combined'));
 app.use(morgan('tiny'));
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs');
 
 
 app.use('/sessions', sessionsRouter);
+app.use('/admin', adminRouter);
 
 app.get('/', (req, res) => {
     //res.send('Hello from my node.js app!');
