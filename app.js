@@ -24,6 +24,10 @@ app.use(express.urlencoded({extended:false}));//to use info as req.body
 app.use(cookieParser());
 app.use(session({secret: 'globomantics'}));//some session secret
 
+
+require('./src/config/passport.js')(app);//should be registered before routers
+
+
 //set ejs as a template engine
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
@@ -33,7 +37,7 @@ app.use('/sessions', sessionsRouter);
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 
-require('./src/config/passport.js')(app);
+
 
 app.get('/', (req, res) => {
     //res.send('Hello from my node.js app!');
