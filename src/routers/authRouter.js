@@ -1,6 +1,7 @@
 const express = require('express');
 const debug = require('debug')('app:sessionRouter');
 const { MongoClient, ObjectId } = require('mongodb');
+const passport = require('passport');
 
 const authRouter = express.Router();
 const mongoPass = encodeURIComponent("S8qaze@Y38FFZ*u");
@@ -40,6 +41,17 @@ authRouter.route('/signUp')
         //     res.redirect('/auth/profile');//create user and redirect to profile
         // });
     });
+
+authRouter.route('/signIn')
+    .get((req, res) => {
+        res.render('signin');
+    })
+    .post(
+        passport.authenticate('local', {
+            successRedirect: '/auth/profile',
+            failureMessage: '/',
+        })
+    );
 
 authRouter.route('/profile')
     .get((req, res) => {

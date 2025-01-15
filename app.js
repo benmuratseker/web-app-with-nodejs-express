@@ -26,7 +26,7 @@ app.use(session({secret: 'globomantics'}));//some session secret
 
 
 require('./src/config/passport.js')(app);//should be registered before routers
-
+require('./src/config/strategies/local.strategy.js')(passport);
 
 //set ejs as a template engine
 app.set('views', './src/views');
