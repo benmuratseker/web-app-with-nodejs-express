@@ -50,6 +50,7 @@ authRouter.route('/signIn')
         passport.authenticate('local', {
             successRedirect: '/auth/profile',
             failureMessage: '/',
+            failureRedirect: '/',//added for failure on sign in
         })
     );
 
