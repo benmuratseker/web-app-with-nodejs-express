@@ -4,6 +4,14 @@ const { MongoClient, ObjectId } = require('mongodb');
 const sessions = require('../data/sessions.json'); 
 
 const sessionsRouter = express.Router();
+//check if user signed in or redirect 
+sessionsRouter.use((req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/auth/signIn');
+    }
+})
 
 const password = encodeURIComponent("S8qaze@Y38FFZ*u");
 
